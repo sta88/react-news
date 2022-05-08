@@ -1,12 +1,13 @@
 import React, {useContext, useState} from 'react';
 import Input from './Input';
 import Button from './Button';
-import {AuthContext} from '../App';
-import {AdminContext} from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+// import {AuthContext} from '../App';
+// import {AdminContext} from '../App';
 
 const LoginForm = ({visible, setVisible}) => {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
-    const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    // const {isAuth, setIsAuth} = useContext(AuthContext);
+    // const {isAdmin, setIsAdmin} = useContext(AdminContext);
     const [loginError, setLoginError] = useState(false);
     const [user, setUser] = useState({login: '', password: ''});
     const [userData, setUserData] = useState([
@@ -14,28 +15,30 @@ const LoginForm = ({visible, setVisible}) => {
         {login: 'admin', password: 'admin'},
     ]);
 
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.isAuth);
+    const isAdmin = useSelector(state => state.isAdmin);
+
     const Login = (e) => {
         e.preventDefault();
 
         for (let i=0; i < userData.length; i++) {
             if (userData[i].login === user.login && userData[i].password === user.password) {
-                setIsAuth(true);
-                localStorage.setItem('auth', 'true');
+                // setIsAuth(true);
+                dispatch({type: "User"});
+
                 setLoginError(false);
                 i = userData.length + 1;
                 setVisible(false);
 
                 if (user.login === 'admin') {
-                    setIsAdmin(true);
-                    localStorage.setItem('admin', 'true');
-                } else {
-                    setIsAdmin(false);
+                    // setIsAdmin(true);
+                    dispatch({type: "Admin"});
                 }
             } else {
                 setLoginError(true);
             }
         }
-        console.log(loginError);
     }
 
     return (

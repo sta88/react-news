@@ -1,11 +1,14 @@
-import React, {useContext, useEffect} from 'react';
-import {AuthContext} from '../App';
-import {AdminContext} from '../App';
+import React, {useContext} from 'react';
+// import {AuthContext} from '../App';
+// import {AdminContext} from '../App';
 import Button from './Button';
+import { useSelector } from 'react-redux';
 
 const NewsItem = (props) => {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
-    const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    // const {isAuth, setIsAuth} = useContext(AuthContext);
+    // const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    const isAuth = useSelector(state => state.isAuth);
+    const isAdmin = useSelector(state => state.isAdmin);
     
     let newsButtons;
     if (isAuth) {

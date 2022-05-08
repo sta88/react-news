@@ -1,10 +1,13 @@
 import React, {useContext}  from "react";
-import {AuthContext} from '../App';
-import {AdminContext} from '../App';
+import { useSelector } from 'react-redux';
+// import {AuthContext} from '../App';
+// import {AdminContext} from '../App';
 
 function Main() {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
-    const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    // const {isAuth, setIsAuth} = useContext(AuthContext);
+    // const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    const isAuth = useSelector(state => state.isAuth);
+    const isAdmin = useSelector(state => state.isAdmin);
 
     return (
         <div className="wrapper">

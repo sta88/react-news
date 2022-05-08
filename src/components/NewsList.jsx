@@ -12,8 +12,8 @@ const NewsList = ({news, remove, approve}) => {
 
     return (
         <div className="news">
-            {news.map((newsItem, index) =>
-                <NewsItem key={index} number={index + 1} newsItem={newsItem} remove={remove} approve={approve}/>
+            {news.map((newsItem) =>
+                <NewsItem key={newsItem.id} newsItem={newsItem} remove={remove} approve={approve}/>
             )}
         </div>
     );

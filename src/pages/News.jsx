@@ -2,12 +2,16 @@ import React, {useState, useMemo, useContext} from "react";
 import Search from "../components/Search";
 import NewsList from "../components/NewsList";
 import NewsForm from "../components/NewsForm";
-import {AuthContext} from '../App';
-import {AdminContext} from '../App';
+import { useDispatch, useSelector } from 'react-redux';
+// import {AuthContext} from '../App';
+// import {AdminContext} from '../App';
 
 function News () {
-    const {isAuth, setIsAuth} = useContext(AuthContext);
-    const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    // const {isAuth, setIsAuth} = useContext(AuthContext);
+    // const {isAdmin, setIsAdmin} = useContext(AdminContext);
+    const dispatch = useDispatch();
+    const isAuth = useSelector(state => state.isAuth);
+    const isAdmin = useSelector(state => state.isAdmin);
     const [filter, setFilter] = useState({query: ''})
     const [news, setNews] = useState([
         { date: '01.03.2022', 

@@ -9,18 +9,18 @@ export const AuthContext = createContext(false);
 export const AdminContext = createContext(false);
 
 function App() {
-    const [isAuth, setIsAuth] = useState(false);
-    const [isAdmin, setIsAdmin] = useState(false);
+    // const [isAuth, setIsAuth] = useState(false);
+    // const [isAdmin, setIsAdmin] = useState(false);
 
-    useEffect(() => {
-        if (localStorage.getItem('auth')) {
-            setIsAuth(true)
-        }
-    }, []);
+    // useEffect(() => {
+    //     if (localStorage.getItem('auth')) {
+    //         setIsAuth(true)
+    //     }
+    // }, []);
 
     return (
-        <AuthContext.Provider value={{isAuth, setIsAuth}}>
-            <AdminContext.Provider value={{isAdmin, setIsAdmin}}>
+        // <AuthContext.Provider value={{isAuth, setIsAuth}}>
+        //     <AdminContext.Provider value={{isAdmin, setIsAdmin}}>
                 <BrowserRouter>
                     <Header />
                     <Routes>
@@ -29,8 +29,8 @@ function App() {
                         {/* <Route path="*" element={<News />} /> */}
                     </Routes>
                 </BrowserRouter>
-            </AdminContext.Provider>
-        </AuthContext.Provider>
+        //     </AdminContext.Provider>
+        // </AuthContext.Provider>
     )
 }
 
