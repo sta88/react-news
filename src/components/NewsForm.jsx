@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import Input from './Input';
 import Button from './Button';
+import Textarea from './Textarea';
 
-const NewsForm = ({create}) => {
+const NewsForm = ({create, setVisible}) => {
     const [news, setNews] = useState({date: '', title: '', text: ''})
 
     const addNews = (e) => {
@@ -11,7 +12,8 @@ const NewsForm = ({create}) => {
         
         for (let i=0; i<Object.keys(news).length; i++) {
             let inputName = Object.keys(news)[i];
-            let input = document.querySelector('input[name="' + inputName + '"]');
+            let input = document.querySelector('input[name="' + inputName + '"]') ||
+                        document.querySelector('textarea[name="' + inputName + '"]');
 
             if (!Object.values(news)[i]) {
                 input.classList.add('_error');
@@ -25,6 +27,7 @@ const NewsForm = ({create}) => {
             const newItem = {...news, approved: false, id: Date.now()};
             create(newItem);
             setNews({date: '', title: '', text: ''});
+            setVisible(false);
         }
     }
 
@@ -47,10 +50,9 @@ const NewsForm = ({create}) => {
                     name='title'
                 />
                 <div className='input-error'>Введите заголовок</div>
-                <Input
+                <Textarea
                     value={news.text}
                     onChange={e => setNews({...news, text: e.target.value})}
-                    type='text'
                     placeholder='Текст новости'
                     name='text'
                 />

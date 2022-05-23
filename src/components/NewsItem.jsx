@@ -29,7 +29,7 @@ const NewsItem = (props) => {
     return (
         <div className="news-item">
             <div className="news-item-info">
-                <div className="news-item__date">{props.newsItem.date}</div>
+                <div className="news-item__date">01.05.2022</div>
                 <h3 className="news-item__title">{props.newsItem.title}</h3>
                 <div className="news-item__text">{props.newsItem.text}</div>
             </div>

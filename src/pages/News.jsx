@@ -2,6 +2,8 @@ import React, {useState, useMemo, useContext} from "react";
 import Search from "../components/Search";
 import NewsList from "../components/NewsList";
 import NewsForm from "../components/NewsForm";
+import Button from "../components/Button";
+import Modal from "../components/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
@@ -13,6 +15,7 @@ function News () {
     const isAuth = useSelector(state => state.isAuth);
     const isAdmin = useSelector(state => state.isAdmin);
     const [filter, setFilter] = useState({query: ''})
+    const [modal, setModal] = useState(false);
     const [news, setNews] = useState([
         { date: '01.03.2022', 
             title: 'News 1',
@@ -42,9 +45,9 @@ function News () {
 
     const searchedNews = useMemo(() => {
         if (isAuth) {
-            return news.filter(newsItem => newsItem.title.toLowerCase().includes(filter.query.toLowerCase()));
+            return news.filter(newsItem => newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) || newsItem.text.toLowerCase().includes(filter.query.toLowerCase()));
         } else {
-            return news.filter(newsItem => newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) && newsItem.approved);
+            return news.filter(newsItem => (newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) || newsItem.text.toLowerCase().includes(filter.query.toLowerCase())) && newsItem.approved);
         }
     }, [filter.query, news, isAuth, isAdmin]);
     
@@ -65,8 +68,14 @@ function News () {
         <div className="wrapper">
             <h1>News</h1>
             <Search filter={filter} setFilter={setFilter}/>
-            {isAuth ? <NewsForm create={createNewsItem}/> : ''}            
-            <NewsList news={searchedNews} remove={removeNewsItem} setNews={setNews} approve={approveNewsItem}/>
+            {isAuth ? <Button onClick={() => setModal(true)}>Добавить новость</Button> : ''}   
+            <NewsList news={searchedNews} remove={removeNewsItem} setNews={setNews} approve={approveNewsItem}/>     
+
+            <Modal visible={modal} setVisible={setModal}>
+                <h3>Ваша новость</h3>
+                <p>Введите данные новости. Все поля обязательны для заполнения</p>
+                <NewsForm create={createNewsItem} setVisible={setModal}/>
+            </Modal>  
         </div>
     )
 };

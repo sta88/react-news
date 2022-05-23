@@ -1,5 +1,6 @@
 import React, {useContext}  from "react";
 import { useSelector } from 'react-redux';
+import Slider from "../components/Slider";
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
 
@@ -11,6 +12,7 @@ function Main() {
 
     return (
         <div className="wrapper">
+            <Slider />
             <h1>Привет, {isAuth ? (isAdmin ? 'Admin' : 'User') : 'Гость'}</h1>
         </div>
     )

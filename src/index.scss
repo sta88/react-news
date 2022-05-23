@@ -6,7 +6,8 @@
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 15px;
-
+    font-size: 14px;
+    font-family: Tahoma;
 }
 
 .header {
@@ -93,6 +94,19 @@
     padding: 5px 15px;
     margin: 5px 0;
     border: 1px solid rgba(0,0,0,.2);
+    font-size: 14px;
+    font-family: Tahoma;
+}
+
+.textarea {
+    width: 100%;
+    padding: 5px 15px;
+    margin: 5px 0;
+    border: 1px solid rgba(0,0,0,.2);
+    height: 100px;
+    resize:none;
+    font-size: 14px;
+    font-family: Tahoma;
 }
 
 .button {
@@ -110,9 +124,8 @@
 }
 
 .news-form {
-    padding: 15px;
-    border: 1px solid rgba(0,0,0,.2);
     margin-top: 15px;
+    width: 640px;
 }
 
 .input-error {
@@ -123,4 +136,30 @@
     ._error + & {
         display: block;
     }
+}
+
+.slider {
+    position: relative;
+    width: 80%;
+    height: 500px;
+    margin: auto;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+ 
+.slider-img {
+    position: absolute;
+    width: 100%;
+    height: 500px;
+    transition: all 0.2s;
+}
+ 
+.slider-img-prev {
+    transform: translateX(-100%);
+}
+ 
+.slider-img-next {
+    transform: translateX(100%);
 }

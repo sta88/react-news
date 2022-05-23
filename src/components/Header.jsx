@@ -25,7 +25,7 @@ function Header () {
             <header className="header">
                 <div className="header__logo">
                     <Link to="/">
-                        <img src="images/logo.svg" alt="Logo" />
+                        Logotip
                     </Link>
                 </div>
                 <div className="header-links">
@@ -38,6 +38,7 @@ function Header () {
                 </div>
             </header>
             <Modal visible={modal} setVisible={setModal}>
+                <h3>Введите ваши данные</h3>
                 <LoginForm setVisible={setModal}/>
             </Modal>
         </div>
