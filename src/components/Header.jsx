@@ -19,13 +19,13 @@ function Header () {
         // setIsAdmin(false);
         dispatch({type: "Logout", payload: ''});
     }
-    
+
     return (
         <div className="wrapper">
             <header className="header">
                 <div className="header__logo">
                     <Link to="/">
-                        Logotip
+                        <img src="images/logotip.svg" alt="Logotip" />
                     </Link>
                 </div>
                 <div className="header-links">

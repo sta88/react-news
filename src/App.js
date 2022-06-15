@@ -4,6 +4,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import Header from './components/Header'
 import News from './pages/News'
 import Main from "./pages/Main";
+import NewsItem from "./pages/NewsItemPage";
 
 export const AuthContext = createContext(false);
 export const AdminContext = createContext(false);
@@ -25,7 +26,8 @@ function App() {
                     <Header />
                     <Routes>
                         <Route index element={<Main />} />
-                        <Route path="/news" element={<News />} />
+                        <Route exact path="/news" element={<News />} />
+                        <Route exact path="/news/:id" element={<NewsItem />} />
                         {/* <Route path="*" element={<News />} /> */}
                     </Routes>
                 </BrowserRouter>

@@ -1,10 +1,11 @@
-import React, {useState, useMemo, useContext} from "react";
+import React, {useState, useMemo, useContext, useEffect} from "react";
 import Search from "../components/Search";
 import NewsList from "../components/NewsList";
 import NewsForm from "../components/NewsForm";
 import Button from "../components/Button";
 import Modal from "../components/Modal";
 import { useDispatch, useSelector } from 'react-redux';
+import NewsService from "../components/NewsService";
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
 
@@ -16,41 +17,28 @@ function News () {
     const isAdmin = useSelector(state => state.isAdmin);
     const [filter, setFilter] = useState({query: ''})
     const [modal, setModal] = useState(false);
-    const [news, setNews] = useState([
-        { date: '01.03.2022', 
-            title: 'News 1',
-            text: 'Text of News 1',
-            approved: true,
-            id: '111'
-        },
-        { date: '02.03.2022', 
-            title: 'News 2',
-            text: 'Text of News 2',
-            approved: true,
-            id: '222'
-        },
-        { date: '03.03.2022', 
-            title: 'News 3',
-            text: 'Text of News 3',
-            approved: true,
-            id: '333'
-        },
-        { date: '04.03.2022', 
-            title: 'News 4',
-            text: 'Text of News 4',
-            approved: true,
-            id: '444'
-        },
-    ]);
+    const [news, setNews] = useState([]);
+
+    useEffect(() => {
+        fetchNews();
+    }, []);
+
+    async function fetchNews() {
+        const newsData = await NewsService.getAll();
+        setNews(newsData);
+    }
 
     const searchedNews = useMemo(() => {
+        console.log(news);
+        let filteredNews = news.filter(newsItem => newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) || newsItem.body.toLowerCase().includes(filter.query.toLowerCase()));
+console.log('auth', isAuth);
         if (isAuth) {
-            return news.filter(newsItem => newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) || newsItem.text.toLowerCase().includes(filter.query.toLowerCase()));
+            return filteredNews;
         } else {
-            return news.filter(newsItem => (newsItem.title.toLowerCase().includes(filter.query.toLowerCase()) || newsItem.text.toLowerCase().includes(filter.query.toLowerCase())) && newsItem.approved);
+            return filteredNews.filter(newsItem => newsItem.approved);
         }
-    }, [filter.query, news, isAuth, isAdmin]);
-    
+    }, [filter.query, news, isAuth]);
+
     const createNewsItem = (newItem) => {
         setNews([...news, newItem]);
     }
@@ -58,24 +46,27 @@ function News () {
     const removeNewsItem = (newsItem) => {
         setNews(news.filter(p => p.id !== newsItem.id));
     }
-    
+
     const approveNewsItem = (newsItem) => {
+        console.log(news);
         newsItem.approved = true;
         setNews([...news]);
+        console.log('------------');
+        console.log(news);
     }
 
     return (
         <div className="wrapper">
             <h1>News</h1>
             <Search filter={filter} setFilter={setFilter}/>
-            {isAuth ? <Button onClick={() => setModal(true)}>Добавить новость</Button> : ''}   
-            <NewsList news={searchedNews} remove={removeNewsItem} setNews={setNews} approve={approveNewsItem}/>     
+            {isAuth ? <Button onClick={() => setModal(true)}>Добавить новость</Button> : ''}
+            <NewsList news={searchedNews} remove={removeNewsItem} setNews={setNews} approve={approveNewsItem}/>
 
             <Modal visible={modal} setVisible={setModal}>
                 <h3>Ваша новость</h3>
                 <p>Введите данные новости. Все поля обязательны для заполнения</p>
                 <NewsForm create={createNewsItem} setVisible={setModal}/>
-            </Modal>  
+            </Modal>
         </div>
     )
 };

@@ -4,12 +4,12 @@ import Button from './Button';
 import Textarea from './Textarea';
 
 const NewsForm = ({create, setVisible}) => {
-    const [news, setNews] = useState({date: '', title: '', text: ''})
+    const [news, setNews] = useState({date: '', title: '', body: ''})
 
     const addNews = (e) => {
         e.preventDefault();
         let errors = 0;
-        
+
         for (let i=0; i<Object.keys(news).length; i++) {
             let inputName = Object.keys(news)[i];
             let input = document.querySelector('input[name="' + inputName + '"]') ||
@@ -22,11 +22,11 @@ const NewsForm = ({create, setVisible}) => {
                 input.classList.remove('_error');
             }
         };
-        
+
         if (errors === 0) {
             const newItem = {...news, approved: false, id: Date.now()};
             create(newItem);
-            setNews({date: '', title: '', text: ''});
+            setNews({date: '', title: '', body: ''});
             setVisible(false);
         }
     }
@@ -51,10 +51,10 @@ const NewsForm = ({create, setVisible}) => {
                 />
                 <div className='input-error'>Введите заголовок</div>
                 <Textarea
-                    value={news.text}
-                    onChange={e => setNews({...news, text: e.target.value})}
+                    value={news.body}
+                    onChange={e => setNews({...news, body: e.target.value})}
                     placeholder='Текст новости'
-                    name='text'
+                    name='body'
                 />
                 <div className='input-error'>Введите текст новости</div>
                 <Button onClick={addNews}>Отправить на модерацию</Button>
