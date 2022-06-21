@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react';
-import Input from './Input';
+import Input from './Input/Input';
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
 // import {AuthContext} from '../App';
@@ -44,7 +44,7 @@ const LoginForm = ({visible, setVisible}) => {
     return (
         <div>
             <form>
-                <div>{loginError ? 'Введены неверные данные' : ''}</div>
+                <div class="error">{loginError ? 'Введены неверные данные' : ''}</div>
                 <Input
                     value={user.login}
                     onChange={e => setUser({...user, login: e.target.value})}

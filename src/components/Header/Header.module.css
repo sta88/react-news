@@ -1,0 +1,30 @@
+.header {
+    padding: 15px 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #3e23e6;
+    margin-bottom: 20px;
+}
+.header img {
+    display: block;
+}
+.header_links {
+    display: flex;
+    align-items: center;
+}
+.header_links__item {
+    margin-left: 15px;
+    color: #3e23e6;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+}
+.header_links__item a {
+    text-decoration: none;
+    color: #3E23E6;
+}
+.header_links__item:hover,
+.header_links__item:hover a {
+    text-decoration: underline;
+}

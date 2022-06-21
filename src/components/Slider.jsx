@@ -10,17 +10,17 @@ const Slider = () => {
         'images/image5.png'
     ]
     const [activeIndex, setActiveIndex] = useState(0);
-    
+
     useEffect(() => {
         const interval = setInterval(() => {
             setActiveIndex((current) => {
                 const res = current === images.length - 1 ? 0 : current + 1;
                 return res;
             });
-        }, 3000);
+        }, 7000);
         return () => clearInterval();
     });
-    
+
     const prevImgIndex = activeIndex ? activeIndex - 1 : images.length - 1
     const nextImgIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1
 

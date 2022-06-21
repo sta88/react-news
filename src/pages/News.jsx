@@ -3,7 +3,7 @@ import Search from "../components/Search";
 import NewsList from "../components/NewsList";
 import NewsForm from "../components/NewsForm";
 import Button from "../components/Button";
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import NewsService from "../components/NewsService";
 // import {AuthContext} from '../App';

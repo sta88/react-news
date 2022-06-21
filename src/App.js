@@ -1,7 +1,7 @@
 import React, {createContext, useState, useEffect} from "react";
 import './index.scss';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Header from './components/Header'
+import Header from './components/Header/Header'
 import News from './pages/News'
 import Main from "./pages/Main";
 import NewsItem from "./pages/NewsItemPage";
@@ -23,7 +23,9 @@ function App() {
         // <AuthContext.Provider value={{isAuth, setIsAuth}}>
         //     <AdminContext.Provider value={{isAdmin, setIsAdmin}}>
                 <BrowserRouter>
-                    <Header />
+                    <div className="wrapper">
+                        <Header />
+                    </div>
                     <Routes>
                         <Route index element={<Main />} />
                         <Route exact path="/news" element={<News />} />

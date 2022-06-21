@@ -1,10 +1,11 @@
 import React, {useContext, useState} from "react";
-import Modal from "../components/Modal";
-import LoginForm from "./LoginForm";
+import Modal from "../Modal/Modal";
+import LoginForm from "../LoginForm";
 import {Link} from 'react-router-dom';
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
 import { useDispatch, useSelector } from 'react-redux';
+import classes from './Header.module.css'
 
 function Header () {
     const [modal, setModal] = useState(false);
@@ -21,19 +22,19 @@ function Header () {
     }
 
     return (
-        <div className="wrapper">
-            <header className="header">
-                <div className="header__logo">
+        <>
+            <header className={classes.header}>
+                <div className={classes.header__logo}>
                     <Link to="/">
                         <img src="images/logotip.svg" alt="Logotip" />
                     </Link>
                 </div>
-                <div className="header-links">
-                    <div className="header-links__item"><Link to="/news">Новости</Link></div>
+                <div className={classes.header_links}>
+                    <div className={classes.header_links__item}><Link to="/news">Новости</Link></div>
                     { isAuth ?
-                        <div className="header-links__item" onClick={Logout}>Выход</div>
+                        <div className={classes.header_links__item} onClick={Logout}>Выход</div>
                         :
-                        <div className="header-links__item" onClick={() => setModal(true)}>Вход</div>
+                        <div className={classes.header_links__item} onClick={() => setModal(true)}>Вход</div>
                     }
                 </div>
             </header>
@@ -41,7 +42,7 @@ function Header () {
                 <h3>Введите ваши данные</h3>
                 <LoginForm setVisible={setModal}/>
             </Modal>
-        </div>
+        </>
     )
 };
 
