@@ -2,7 +2,7 @@ import React, {useState, useMemo, useContext, useEffect} from "react";
 import Search from "../components/Search";
 import NewsList from "../components/NewsList";
 import NewsForm from "../components/NewsForm";
-import Button from "../components/Button";
+import Button from "../components/Button/Button";
 import Modal from "../components/Modal/Modal";
 import { useDispatch, useSelector } from 'react-redux';
 import NewsService from "../components/NewsService";

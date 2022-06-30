@@ -1,6 +1,6 @@
 import React, {useContext, useState} from "react";
 import Modal from "../Modal/Modal";
-import LoginForm from "../LoginForm";
+import LoginForm from "../LoginForm/LoginForm";
 import {Link} from 'react-router-dom';
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';

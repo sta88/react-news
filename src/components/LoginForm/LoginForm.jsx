@@ -1,7 +1,8 @@
 import React, {useContext, useState} from 'react';
-import Input from './Input/Input';
-import Button from './Button';
+import Input from '../Input/Input';
+import Button from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
+import classes from './Loginform.module.css'
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
 
@@ -44,7 +45,7 @@ const LoginForm = ({visible, setVisible}) => {
     return (
         <div>
             <form>
-                <div class="error">{loginError ? 'Введены неверные данные' : ''}</div>
+                <div className={classes.error}>{loginError ? 'Введены неверные данные' : ''}</div>
                 <Input
                     value={user.login}
                     onChange={e => setUser({...user, login: e.target.value})}

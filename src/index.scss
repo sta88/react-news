@@ -43,14 +43,6 @@ body {
     margin-bottom: 5px;
 }
 
-.input {
-    width: 100%;
-    padding: 5px 15px;
-    margin: 5px 0;
-    border: 1px solid rgba(0,0,0,.2);
-    font-size: 14px;
-    font-family: Tahoma;
-}
 
 .textarea {
     width: 100%;
@@ -63,28 +55,12 @@ body {
     font-family: Tahoma;
 }
 
-.button {
-    min-width: 140px;
-    padding: 5px 15px;
-    margin: 5px 0;
-    text-align: center;
-    box-shadow: none;
-    border-radius: 2px;
-    border: 1px solid rgba(0,0,0,.2);
-
-    &:hover {
-        border-color: rgba(0,0,0,0.4);
-    }
-}
 
 .news-form {
     margin-top: 15px;
     width: 640px;
 }
-.error {
-    color: rgb(119, 9, 9);
-    font-style: italic;
-}
+
 .input-error {
     display: none;
     color: rgb(119, 9, 9);
