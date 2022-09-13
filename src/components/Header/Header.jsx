@@ -26,7 +26,7 @@ function Header () {
             <header className={classes.header}>
                 <div className={classes.header__logo}>
                     <Link to="/">
-                        <img src="images/logotip.svg" alt="Logotip" />
+                        <img src="../images/logotip.svg" alt="Logotip" />
                     </Link>
                 </div>
                 <div className={classes.header_links}>

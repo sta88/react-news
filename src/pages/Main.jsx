@@ -1,6 +1,7 @@
 import React, {useContext}  from "react";
 import { useSelector } from 'react-redux';
 import Slider from "../components/Slider";
+import SlickSlider from "../components/SlickSlider";
 // import {AuthContext} from '../App';
 // import {AdminContext} from '../App';
 
@@ -12,7 +13,8 @@ function Main() {
 
     return (
         <div className="wrapper">
-            <Slider />
+            {/* <Slider /> */}
+            <SlickSlider />
             <h1>Привет, {isAuth ? (isAdmin ? 'Admin' : 'User') : 'Гость'}</h1>
             <p>
                 <b>Зарегистрированный пользователь: user/user</b><br />

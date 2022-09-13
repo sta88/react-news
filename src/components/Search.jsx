@@ -3,7 +3,8 @@ import Input from "./Input/Input";
 
 const Search = ({filter, setFilter}) => {
     return (
-        <div>
+        <div className='search'>
+            <img className='search__icon' src="../images/search.svg" alt="" />
             <Input
                 value={filter.query}
                 onChange={e => setFilter({...filter, query: e.target.value})}

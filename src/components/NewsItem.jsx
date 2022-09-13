@@ -29,10 +29,15 @@ const NewsItem = (props) => {
     }
 
     return (
-        <div className="news-item">
+        <div className="news-item" onClick={() => router(`/news/${props.newsItem.slug}`)}>
             <div className="news-item-info">
-                <div className="news-item__date">{props.newsItem.date ? props.newsItem.date : '01.05.2022'}</div>
-                <h3 className="news-item__title" onClick={() => router(`/news/${props.newsItem.id}`)}>
+                <div className="news-item__date">{props.newsItem.date}</div>
+                {props.newsItem.image ?
+                    <img className="news-item__image" src={props.newsItem.image} alt="Image" />
+                    :
+                    <div></div>
+                }
+                <h3 className="news-item__title">
                     {props.newsItem.title}
                 </h3>
                 <div className="news-item__text">{props.newsItem.body}</div>
